@@ -49,7 +49,7 @@ class BasicoPage extends StatelessWidget {
                       children: <Widget>[
                         Text('Inside Out',style: estiloTitulo,),
                         SizedBox(height: 7.0),
-                        Text('#Stay At Home', style: estiloSubTitulo,),
+                        Text('#QuedateEnCasa', style: estiloSubTitulo,),
                       ]
                     ),
                   ),
@@ -84,7 +84,7 @@ class BasicoPage extends StatelessWidget {
           ],
         );
   }
-  
+
   Widget _crearTexto(){
     return SafeArea(
         child: Container(
