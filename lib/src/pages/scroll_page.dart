@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+DateTime now = new DateTime.now();
 class ScrollPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -50,8 +51,8 @@ class ScrollPage extends StatelessWidget {
           child: Column(
             children: <Widget>[
             SizedBox(height:20.0),
-            Text('11',style:estiloTexto),
-            Text('Miércoles',style:estiloTexto),
+            Text('${now.hour}:${now.minute}',style:estiloTexto),
+            Text('${now.weekday}',style:estiloTexto),
             Expanded(child: Container(),),
             Icon(Icons.keyboard_arrow_down, size:70.0, color: Colors.white,)
           ],
