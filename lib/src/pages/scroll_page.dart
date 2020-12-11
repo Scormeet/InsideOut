@@ -52,7 +52,7 @@ class ScrollPage extends StatelessWidget {
             children: <Widget>[
             SizedBox(height:20.0),
             Text('${now.hour}:${now.minute}',style:estiloTexto),
-            Text('${now.weekday}',style:estiloTexto),
+            Text('${now.day} - ${now.month} - ${now.year}',style:estiloTexto),
             Expanded(child: Container(),),
             Icon(Icons.keyboard_arrow_down, size:70.0, color: Colors.white,)
           ],
