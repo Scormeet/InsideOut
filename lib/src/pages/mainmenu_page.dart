@@ -9,6 +9,13 @@ class MainMenuPage extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           _fondoApp(),
+          SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                _titulos()
+              ],
+            ),
+          ),
         ],
       )
     );
@@ -59,6 +66,22 @@ class MainMenuPage extends StatelessWidget {
           child:secondBox,
         ),
       ],
+    );
+  }
+
+  Widget _titulos(){
+    return SafeArea(
+        child: Container(
+          padding: EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+            Text('Inside Out', style: TextStyle(color: Colors.white, fontSize: 30.0, fontWeight: FontWeight.bold),),
+            SizedBox(height:10.0),
+            Text('Selecciona una Opción',style: TextStyle(color: Colors.white, fontSize: 25.0,),),
+          ],
+        ),
+      ),
     );
   }
 }
