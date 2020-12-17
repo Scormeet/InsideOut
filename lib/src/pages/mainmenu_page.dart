@@ -12,7 +12,8 @@ class MainMenuPage extends StatelessWidget {
           SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                _titulos()
+                _titulos(),
+                _botonesRedondeados(),
               ],
             ),
           ),
@@ -113,4 +114,63 @@ class MainMenuPage extends StatelessWidget {
       ),
     );
   }
+
+  Widget _botonesRedondeados(){
+    return Table(
+      children: [
+        TableRow(
+          children: [
+            _crearBotonRedondeado(),
+            _crearBotonRedondeado(),
+          ]
+        ),
+        TableRow(
+          children: [
+            _crearBotonRedondeado(),
+            _crearBotonRedondeado(),
+          ]
+        ),
+        TableRow(
+          children: [
+            _crearBotonRedondeado(),
+            _crearBotonRedondeado(),
+          ]
+        ),
+        TableRow(
+          children: [
+            _crearBotonRedondeado(),
+            _crearBotonRedondeado(),
+          ]
+        )
+      ],
+    );
+  }
+
+  Widget _crearBotonRedondeado(){
+    return Container(
+      height: 180.0,
+      margin: EdgeInsets.all(15.0),
+      decoration: BoxDecoration(
+        color: Color.fromRGBO(62, 66, 107, 0.70),
+        borderRadius: BorderRadius.circular(20.0)
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          SizedBox(height: 5.0),
+          CircleAvatar(
+            backgroundColor: Colors.pink,
+            radius: 35.0,
+            child: Icon(Icons.access_alarms, color: Colors.white, size: 30.0)
+          ),
+          Text('XD', style: TextStyle(color: Colors.pink),),
+          SizedBox(height: 5.0),
+        ],
+      ),
+    );
+  }
+
+
 }
+
+
