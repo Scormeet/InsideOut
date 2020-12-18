@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inside_out/src/pages/mainmenu_page.dart';
 
 DateTime now = new DateTime.now();
 class ScrollPage extends StatelessWidget {
@@ -9,7 +10,7 @@ class ScrollPage extends StatelessWidget {
         scrollDirection: Axis.vertical,
         children: <Widget>[
           _pagina1(),
-          _pagina2(),
+          _pagina2(context),
         ]
       )
     );
@@ -60,7 +61,7 @@ class ScrollPage extends StatelessWidget {
     );
   }
 
-  Widget _pagina2(){
+  Widget _pagina2(BuildContext context){
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -74,7 +75,14 @@ class ScrollPage extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 40.0, vertical:20.0),
             child: Text('Bienvenido', style: TextStyle(fontSize: 20.0),),
           ),
-          onPressed: (){},
+          onPressed: (){
+            final route = MaterialPageRoute(
+              builder: (context){
+                return MainMenuPage();
+              }
+            );
+            Navigator.push(context, route);
+          },
         ),
       ),
     );
