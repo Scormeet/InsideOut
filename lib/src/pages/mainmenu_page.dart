@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:inside_out/src/pages/Info1_page.dart';
 import 'package:inside_out/src/pages/basico_page.dart';
 import 'package:inside_out/src/pages/scroll_page.dart';
 
@@ -149,7 +150,7 @@ class MainMenuPage extends StatelessWidget {
       onTap: (){
         final route = MaterialPageRoute(
           builder: (context){
-            return BasicoPage();
+            return Info1Page();
           }
         );
         Navigator.push(context, route);
