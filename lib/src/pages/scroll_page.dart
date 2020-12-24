@@ -39,7 +39,7 @@ class ScrollPage extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       child: Image(
-        image: AssetImage('assets/scroll-1.png'),
+        image: AssetImage('assets/images/scroll-1.png'),
         fit: BoxFit.cover,
       ),
     );
