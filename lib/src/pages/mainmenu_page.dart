@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:inside_out/src/pages/Info1_page.dart';
+import 'package:inside_out/src/pages/Info2_page.dart';
 import 'package:inside_out/src/pages/basico_page.dart';
 import 'package:inside_out/src/pages/scroll_page.dart';
 
@@ -120,40 +121,52 @@ class MainMenuPage extends StatelessWidget {
   }
 
   Widget _botonesRedondeados(BuildContext context){
+
+    var info1 = MaterialPageRoute(
+          builder: (context){
+            return Info1Page();
+          }
+    );
+    var info2 = MaterialPageRoute(
+          builder: (context){
+            return Info2Page();
+          }
+    );
+    var basico = MaterialPageRoute(
+          builder: (context){
+            return BasicoPage();
+          }
+    );
+
     return Table(
       children: [
         TableRow(
           children: [
-            _crearBotonRedondeado(Colors.blue, Icons.border_all, 'General', context),
-            _crearBotonRedondeado(Colors.purpleAccent, Icons.directions_bus, 'Bus', context),
+            _crearBotonRedondeado(Colors.blue, Icons.border_all, 'General', context, info1),
+            _crearBotonRedondeado(Colors.purpleAccent, Icons.directions_bus, 'Bus', context, info1),
           ]
         ),
         TableRow(
           children: [
-            _crearBotonRedondeado(Colors.pinkAccent, Icons.shop, 'Comprar', context),
-            _crearBotonRedondeado(Colors.orange, Icons.insert_drive_file, 'Documentos', context),
+            _crearBotonRedondeado(Colors.pinkAccent, Icons.shop, 'Comprar', context, info2),
+            _crearBotonRedondeado(Colors.orange, Icons.insert_drive_file, 'Documentos', context, info2),
           ]
         ),
         TableRow(
           children: [
-            _crearBotonRedondeado(Colors.blueAccent, Icons.movie_filter, 'Entretenimiento', context),
-            _crearBotonRedondeado(Colors.greenAccent, Icons.cloud, 'Tienda', context),
+            _crearBotonRedondeado(Colors.blueAccent, Icons.movie_filter, 'Entretenimiento', context, basico),
+            _crearBotonRedondeado(Colors.greenAccent, Icons.cloud, 'Tienda', context, basico),
           ]
         )
       ],
     );
   }
 
-  Widget _crearBotonRedondeado(Color color, IconData icono, String texto, BuildContext context){
+  Widget _crearBotonRedondeado(Color color, IconData icono, String texto, BuildContext context, Route route){
     
     return InkWell(
       onTap: (){
-        final route = MaterialPageRoute(
-          builder: (context){
-            return Info1Page();
-          }
-        );
-        Navigator.push(context, route);
+        Navigator.pushReplacement(context, route);
       },
       child: ClipRect(
         child: BackdropFilter(

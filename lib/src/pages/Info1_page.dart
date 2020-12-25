@@ -47,7 +47,7 @@ class Info1Page extends StatelessWidget {
                             top: 20,
                             left: 150,
                             child: Text(
-                              'Todo lo que necesitas \nEs quedarte en casa', 
+                              'Todo lo que necesita \nEs quedarse en casa', 
                               style: kHeadingTextStyle.copyWith(
                                 color: Colors.white,
                               ),
