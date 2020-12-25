@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inside_out/src/pages/mainmenu_page.dart';
+import 'package:inside_out/src/pages/login_page.dart';
 
 DateTime now = new DateTime.now();
 class ScrollPage extends StatelessWidget {
@@ -78,7 +78,7 @@ class ScrollPage extends StatelessWidget {
           onPressed: (){
             final route = MaterialPageRoute(
               builder: (context){
-                return MainMenuPage();
+                return LoginPage();
               }
             );
             Navigator.push(context, route);

@@ -5,11 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:inside_out/src/pages/Info1_page.dart';
 import 'package:inside_out/src/pages/Info2_page.dart';
 import 'package:inside_out/src/pages/basico_page.dart';
-import 'package:inside_out/src/pages/scroll_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:inside_out/src/providers/google_sign_in.dart';
 
 class MainMenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -17,10 +20,18 @@ class MainMenuPage extends StatelessWidget {
           SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                _titulos(),
+                _titulos(user),
                 _botonesRedondeados(context),
               ],
             ),
+          ),
+          ElevatedButton(
+            onPressed: (){
+              final provider =
+                Provider.of<GoogleSignInProvider>(context, listen:false);
+              provider.logout();
+            },
+            child: Text('Logout'),
           ),
         ],
       ),
@@ -76,14 +87,14 @@ class MainMenuPage extends StatelessWidget {
     );
   }
 
-  Widget _titulos(){
+  Widget _titulos(User user){
     return SafeArea(
         child: Container(
           padding: EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-            Text('Inside Out', style: TextStyle(color: Colors.white, fontSize: 30.0, fontWeight: FontWeight.bold),),
+            Text('Inside Out ' + user.displayName, style: TextStyle(color: Colors.white, fontSize: 30.0, fontWeight: FontWeight.bold),),
             SizedBox(height:10.0),
             Text('Selecciona una Opción',style: TextStyle(color: Colors.white, fontSize: 25.0,),),
           ],
@@ -160,6 +171,7 @@ class MainMenuPage extends StatelessWidget {
         )
       ],
     );
+
   }
 
   Widget _crearBotonRedondeado(Color color, IconData icono, String texto, BuildContext context, Route route){
