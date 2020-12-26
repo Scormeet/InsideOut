@@ -15,7 +15,7 @@ class SignUpWidget extends StatelessWidget{
               child: Text(
                 'Bienvenido a Inside Out',
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                 ),
@@ -27,7 +27,10 @@ class SignUpWidget extends StatelessWidget{
           SizedBox(height: 12),
           Text(
             'Ingresa para Continuar',
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.white,
+            ),
           ),
           Spacer(),
         ],

@@ -1,11 +1,9 @@
 import 'dart:math';
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:inside_out/src/pages/Info1_page.dart';
 import 'package:inside_out/src/pages/Info2_page.dart';
 import 'package:inside_out/src/pages/basico_page.dart';
-import 'package:inside_out/src/pages/scroll_page.dart';
 import 'package:inside_out/src/pages/map_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +29,6 @@ class MainMenuPage extends StatelessWidget {
           ),
         ],
       ),
-      //bottomNavigationBar: _bottomNavigationBar(context)
     );
   }
 
@@ -44,10 +41,6 @@ class MainMenuPage extends StatelessWidget {
           begin: FractionalOffset(0.0, 0.4),
           end: FractionalOffset(0.0, 1.0),
           colors: [
-            /*
-            Color.fromRGBO(239, 250, 248, 1.0),
-            Color.fromRGBO(152, 236, 219, 1.0)
-            */
             Color.fromRGBO(52, 54, 101, 1.0),
             Color.fromRGBO(35, 36, 57, 1.0)
           ]
@@ -90,83 +83,33 @@ class MainMenuPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-            Text('Inside Out ', style: TextStyle(color: Colors.white, fontSize: 30.0, fontWeight: FontWeight.bold),),
+            Text('Hola ' + user.displayName, style: TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),),
             SizedBox(height:10.0),
-            Text('Selecciona una Opción',style: TextStyle(color: Colors.white, fontSize: 25.0,),),
+            Text('Selecciona una Opción',style: TextStyle(color: Colors.white, fontSize: 20.0,),),
           ],
         ),
       ),
     );
   }
   
-  /*Widget _bottomNavigationBar(BuildContext context){
-    return Theme(
-      data:Theme.of(context).copyWith(
-        canvasColor: Color.fromRGBO(55, 57, 84, 1.0),
-        primaryColor: Colors.pinkAccent,
-        textTheme: Theme.of(context).textTheme.copyWith(
-          caption: TextStyle(color: Color.fromRGBO(116, 117, 152, 1.0))
-        )
-      ),
-      child: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.menu),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.insert_chart),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.backspace_outlined),
-            label: '',
-          )
-        ],
-      ),
-    );
-  }*/
-
   Widget _botonesRedondeados(BuildContext context){
-
-    var info1 = MaterialPageRoute(
-          builder: (context){
-            return Info1Page();
-          }
-    );
-    var info2 = MaterialPageRoute(
-          builder: (context){
-            return Info2Page();
-          }
-    );
-    var basico = MaterialPageRoute(
-          builder: (context){
-            return BasicoPage();
-          }
-    );
-    var mapa = MaterialPageRoute(
-          builder: (context){
-            return MapSample();
-          }
-    );
-
     return Table(
       children: [
         TableRow(
           children: [
-            _crearBotonRedondeado(Colors.blue, Icons.map, 'Mapa', context, mapa),
-            _crearBotonRedondeado(Colors.purpleAccent, Icons.insert_chart_outlined, 'Gráfica', context, info1),
+            _mapa(Colors.blue, Icons.map, 'Mapa', context),
+            _grafica(Colors.purpleAccent, Icons.insert_chart_outlined, 'Gráfica', context),
           ]
         ),
         TableRow(
           children: [
-            _crearBotonRedondeado(Colors.pinkAccent, Icons.coronavirus_outlined, 'Casos', context, info1),
-            _crearBotonRedondeado(Colors.orange, Icons.medical_services, 'Que Hacer', context, info2),
+            _casos(Colors.pinkAccent, Icons.coronavirus_outlined, 'Casos', context),
+            _quehacer(Colors.orange, Icons.medical_services, 'Que Hacer', context),
           ]
         ),
         TableRow(
           children: [
-            _crearBotonRedondeado(Colors.blueAccent, Icons.insert_drive_file, 'Acerca', context, basico),
+            _acerca(Colors.blueAccent, Icons.insert_drive_file, 'Acerca', context),
             _logOut(Colors.greenAccent, Icons.logout, 'Salir', context),
           ]
         )
@@ -175,11 +118,172 @@ class MainMenuPage extends StatelessWidget {
 
   }
 
-  Widget _crearBotonRedondeado(Color color, IconData icono, String texto, BuildContext context, Route route){
+  Widget _mapa(Color color, IconData icono, String texto, BuildContext context){
     
     return InkWell(
       onTap: (){
-        Navigator.pushReplacement(context, route);
+        final route = MaterialPageRoute(
+          builder: (context){
+            return MapSample();
+          }
+        );
+        Navigator.push(context, route);
+      },
+      child: ClipRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 7.0, sigmaY: 7.0),
+          child: Container(
+            height: 180.0,
+            margin: EdgeInsets.all(15.0),
+            decoration: BoxDecoration(
+              color: Color.fromRGBO(62, 66, 107, 0.70),
+              borderRadius: BorderRadius.circular(35.0)
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                SizedBox(height: 5.0),
+                CircleAvatar(
+                  backgroundColor: color,
+                  radius: 35.0,
+                  child: Icon(icono, color: Colors.white, size: 30.0)
+                ),
+                Text(texto, style: TextStyle(color: color),),
+                SizedBox(height: 5.0),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+  Widget _grafica(Color color, IconData icono, String texto, BuildContext context){
+    
+    return InkWell(
+      onTap: (){
+        final route = MaterialPageRoute(
+          builder: (context){
+            return Info1Page();
+          }
+        );
+        Navigator.push(context, route);
+      },
+      child: ClipRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 7.0, sigmaY: 7.0),
+          child: Container(
+            height: 180.0,
+            margin: EdgeInsets.all(15.0),
+            decoration: BoxDecoration(
+              color: Color.fromRGBO(62, 66, 107, 0.70),
+              borderRadius: BorderRadius.circular(35.0)
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                SizedBox(height: 5.0),
+                CircleAvatar(
+                  backgroundColor: color,
+                  radius: 35.0,
+                  child: Icon(icono, color: Colors.white, size: 30.0)
+                ),
+                Text(texto, style: TextStyle(color: color),),
+                SizedBox(height: 5.0),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+  Widget _casos(Color color, IconData icono, String texto, BuildContext context){
+    
+    return InkWell(
+      onTap: (){
+        final route = MaterialPageRoute(
+          builder: (context){
+            return Info1Page();
+          }
+        );
+        Navigator.push(context, route);
+      },
+      child: ClipRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 7.0, sigmaY: 7.0),
+          child: Container(
+            height: 180.0,
+            margin: EdgeInsets.all(15.0),
+            decoration: BoxDecoration(
+              color: Color.fromRGBO(62, 66, 107, 0.70),
+              borderRadius: BorderRadius.circular(35.0)
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                SizedBox(height: 5.0),
+                CircleAvatar(
+                  backgroundColor: color,
+                  radius: 35.0,
+                  child: Icon(icono, color: Colors.white, size: 30.0)
+                ),
+                Text(texto, style: TextStyle(color: color),),
+                SizedBox(height: 5.0),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+  Widget _quehacer(Color color, IconData icono, String texto, BuildContext context){
+    
+    return InkWell(
+      onTap: (){
+        final route = MaterialPageRoute(
+          builder: (context){
+            return Info2Page();
+          }
+        );
+        Navigator.push(context, route);
+      },
+      child: ClipRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 7.0, sigmaY: 7.0),
+          child: Container(
+            height: 180.0,
+            margin: EdgeInsets.all(15.0),
+            decoration: BoxDecoration(
+              color: Color.fromRGBO(62, 66, 107, 0.70),
+              borderRadius: BorderRadius.circular(35.0)
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                SizedBox(height: 5.0),
+                CircleAvatar(
+                  backgroundColor: color,
+                  radius: 35.0,
+                  child: Icon(icono, color: Colors.white, size: 30.0)
+                ),
+                Text(texto, style: TextStyle(color: color),),
+                SizedBox(height: 5.0),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+  Widget _acerca(Color color, IconData icono, String texto, BuildContext context){
+    
+    return InkWell(
+      onTap: (){
+        final route = MaterialPageRoute(
+          builder: (context){
+            return BasicoPage();
+          }
+        );
+        Navigator.push(context, route);
       },
       child: ClipRect(
         child: BackdropFilter(

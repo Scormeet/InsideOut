@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:inside_out/src/pages/login_page.dart';
+import 'package:inside_out/src/providers/google_sign_in.dart';
+import 'package:inside_out/src/widgets/sign_up_widget.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:inside_out/src/pages/mainmenu_page.dart';
 
 DateTime now = new DateTime.now();
 class ScrollPage extends StatelessWidget {
@@ -52,39 +56,58 @@ class ScrollPage extends StatelessWidget {
           child: Column(
             children: <Widget>[
             SizedBox(height:20.0),
-            Text('${now.hour}:${now.minute}',style:estiloTexto),
-            Text('${now.day} - ${now.month} - ${now.year}',style:estiloTexto),
+            //Text('${now.hour}:${now.minute}',style:estiloTexto),
+            //Text('${now.day} - ${now.month} - ${now.year}',style:estiloTexto),
+            Text('Inside Out',style:estiloTexto),
+            SizedBox(height: 20,),
+            Text('App Informativa sobre casos de COVID-19 en la CDMX',
+                 textAlign: TextAlign.center,
+                 style:TextStyle(
+                   fontSize: 15,
+                   color: Colors.white,
+              )
+            ),
             Expanded(child: Container(),),
-            Icon(Icons.keyboard_arrow_down, size:70.0, color: Colors.white,)
+            Text(
+              'Deslize Hacia Arriba', 
+              textAlign: TextAlign.center,
+              style:TextStyle(
+                color: Colors.white,
+              ),
+            ),
+            Icon(Icons.keyboard_arrow_up, size:70.0, color: Colors.white,)
           ],
       ),
     );
   }
 
   Widget _pagina2(BuildContext context){
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      color: Color.fromRGBO(80, 194, 221, 1.0),
-      child: Center(
-        child: RaisedButton(
-          shape: StadiumBorder(),
-          color: Colors.blue,
-          textColor: Colors.white,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 40.0, vertical:20.0),
-            child: Text('Bienvenido', style: TextStyle(fontSize: 20.0),),
-          ),
-          onPressed: (){
-            final route = MaterialPageRoute(
-              builder: (context){
-                return LoginPage();
-              }
-            );
-            Navigator.push(context, route);
+    return Scaffold(
+      backgroundColor: Color.fromRGBO(80, 194, 221, 1.0),
+      body: ChangeNotifierProvider(
+        create: (context) => GoogleSignInProvider(),
+        child: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot){
+            final provider = Provider.of<GoogleSignInProvider>(context);
+            if(provider.estaIngresado){
+              return buildLoading();
+            }
+            else if(snapshot.hasData){
+              return MainMenuPage();
+            }
+            else{
+              return SignUpWidget();
+            }
           },
         ),
       ),
     );
   }
 }
+
+Widget buildLoading() {
+    return Center(
+      child: CircularProgressIndicator(),
+    );
+  }

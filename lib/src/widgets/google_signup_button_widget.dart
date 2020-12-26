@@ -7,7 +7,11 @@ class GoogleSignUpButtonWidget extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(4),
+        padding: EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30),
+          color: Colors.purple[700],
+        ),
         child: OutlineButton.icon(
           label: Text(
             'Inicia Sesión con Google',
@@ -15,9 +19,9 @@ class GoogleSignUpButtonWidget extends StatelessWidget{
           ),
           shape: StadiumBorder(),
           padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          highlightedBorderColor: Colors.black,
-          borderSide: BorderSide(color: Colors.black),
-          textColor: Colors.black,
+          highlightedBorderColor: Colors.white,
+          borderSide: BorderSide(color: Colors.purple[700]),
+          textColor: Colors.white,
           icon: FaIcon(FontAwesomeIcons.google, color: Colors.red),
           onPressed: () {
             final provider =
