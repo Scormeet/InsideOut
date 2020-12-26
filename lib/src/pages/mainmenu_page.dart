@@ -6,6 +6,7 @@ import 'package:inside_out/src/pages/Info1_page.dart';
 import 'package:inside_out/src/pages/Info2_page.dart';
 import 'package:inside_out/src/pages/basico_page.dart';
 import 'package:inside_out/src/pages/scroll_page.dart';
+import 'package:inside_out/src/pages/map_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:inside_out/src/providers/google_sign_in.dart';
@@ -143,12 +144,17 @@ class MainMenuPage extends StatelessWidget {
             return BasicoPage();
           }
     );
+    var mapa = MaterialPageRoute(
+          builder: (context){
+            return MapSample();
+          }
+    );
 
     return Table(
       children: [
         TableRow(
           children: [
-            _crearBotonRedondeado(Colors.blue, Icons.map, 'Mapa', context, info1),
+            _crearBotonRedondeado(Colors.blue, Icons.map, 'Mapa', context, mapa),
             _crearBotonRedondeado(Colors.purpleAccent, Icons.insert_chart_outlined, 'Gráfica', context, info1),
           ]
         ),
