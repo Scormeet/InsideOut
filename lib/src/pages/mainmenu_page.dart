@@ -5,9 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:inside_out/src/pages/Info1_page.dart';
 import 'package:inside_out/src/pages/Info2_page.dart';
 import 'package:inside_out/src/pages/basico_page.dart';
+import 'package:inside_out/src/pages/scroll_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:inside_out/src/providers/google_sign_in.dart';
+
+
 
 class MainMenuPage extends StatelessWidget {
   @override
@@ -25,17 +28,9 @@ class MainMenuPage extends StatelessWidget {
               ],
             ),
           ),
-          ElevatedButton(
-            onPressed: (){
-              final provider =
-                Provider.of<GoogleSignInProvider>(context, listen:false);
-              provider.logout();
-            },
-            child: Text('Logout'),
-          ),
         ],
       ),
-      bottomNavigationBar: _bottomNavigationBar(context)
+      //bottomNavigationBar: _bottomNavigationBar(context)
     );
   }
 
@@ -94,7 +89,7 @@ class MainMenuPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-            Text('Inside Out ' + user.displayName, style: TextStyle(color: Colors.white, fontSize: 30.0, fontWeight: FontWeight.bold),),
+            Text('Inside Out ', style: TextStyle(color: Colors.white, fontSize: 30.0, fontWeight: FontWeight.bold),),
             SizedBox(height:10.0),
             Text('Selecciona una Opción',style: TextStyle(color: Colors.white, fontSize: 25.0,),),
           ],
@@ -102,8 +97,8 @@ class MainMenuPage extends StatelessWidget {
       ),
     );
   }
-
-  Widget _bottomNavigationBar(BuildContext context){
+  
+  /*Widget _bottomNavigationBar(BuildContext context){
     return Theme(
       data:Theme.of(context).copyWith(
         canvasColor: Color.fromRGBO(55, 57, 84, 1.0),
@@ -115,21 +110,21 @@ class MainMenuPage extends StatelessWidget {
       child: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today),
+            icon: Icon(Icons.menu),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.bar_chart_outlined),
+            icon: Icon(Icons.insert_chart),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.supervised_user_circle),
+            icon: Icon(Icons.backspace_outlined),
             label: '',
           )
         ],
       ),
     );
-  }
+  }*/
 
   Widget _botonesRedondeados(BuildContext context){
 
@@ -153,20 +148,20 @@ class MainMenuPage extends StatelessWidget {
       children: [
         TableRow(
           children: [
-            _crearBotonRedondeado(Colors.blue, Icons.border_all, 'General', context, info1),
-            _crearBotonRedondeado(Colors.purpleAccent, Icons.directions_bus, 'Bus', context, info1),
+            _crearBotonRedondeado(Colors.blue, Icons.map, 'Mapa', context, info1),
+            _crearBotonRedondeado(Colors.purpleAccent, Icons.insert_chart_outlined, 'Gráfica', context, info1),
           ]
         ),
         TableRow(
           children: [
-            _crearBotonRedondeado(Colors.pinkAccent, Icons.shop, 'Comprar', context, info2),
-            _crearBotonRedondeado(Colors.orange, Icons.insert_drive_file, 'Documentos', context, info2),
+            _crearBotonRedondeado(Colors.pinkAccent, Icons.coronavirus_outlined, 'Casos', context, info1),
+            _crearBotonRedondeado(Colors.orange, Icons.medical_services, 'Que Hacer', context, info2),
           ]
         ),
         TableRow(
           children: [
-            _crearBotonRedondeado(Colors.blueAccent, Icons.movie_filter, 'Entretenimiento', context, basico),
-            _crearBotonRedondeado(Colors.greenAccent, Icons.cloud, 'Tienda', context, basico),
+            _crearBotonRedondeado(Colors.blueAccent, Icons.insert_drive_file, 'Acerca', context, basico),
+            _logOut(Colors.greenAccent, Icons.logout, 'Salir', context),
           ]
         )
       ],
@@ -209,7 +204,45 @@ class MainMenuPage extends StatelessWidget {
     );
   }
 
+  Widget _logOut(Color color, IconData icono, String texto, BuildContext context){
+    
+    return InkWell(
+      onTap: (){
+        final provider =
+                Provider.of<GoogleSignInProvider>(context, listen:false);
+              provider.logout();
+      },
+      child: ClipRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 7.0, sigmaY: 7.0),
+          child: Container(
+            height: 180.0,
+            margin: EdgeInsets.all(15.0),
+            decoration: BoxDecoration(
+              color: Color.fromRGBO(62, 66, 107, 0.70),
+              borderRadius: BorderRadius.circular(35.0)
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                SizedBox(height: 5.0),
+                CircleAvatar(
+                  backgroundColor: color,
+                  radius: 35.0,
+                  child: Icon(icono, color: Colors.white, size: 30.0)
+                ),
+                Text(texto, style: TextStyle(color: color),),
+                SizedBox(height: 5.0),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
 
 }
+
 
 
