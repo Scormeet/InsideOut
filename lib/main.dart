@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         'menu'    : (BuildContext context) => MainMenuPage(),
         'info1'   : (BuildContext context) => Info1Page(),
         'info2'   : (BuildContext context) => Info2Page(),
-        'map'     : (BuildContext context) => MapSample(),
+        'map'     : (BuildContext context) => MapPage(),
       }
     );
   }

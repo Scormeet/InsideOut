@@ -81,8 +81,14 @@ class MainMenuPage extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(20.0),
           child: Column(
+            
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+            CircleAvatar(
+                backgroundImage: NetworkImage(user.photoURL),
+                radius: 30.0,
+            ),
+            SizedBox(height: 10.0,),
             Text('Hola ' + user.displayName, style: TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),),
             SizedBox(height:10.0),
             Text('Selecciona una Opción',style: TextStyle(color: Colors.white, fontSize: 20.0,),),
@@ -97,7 +103,7 @@ class MainMenuPage extends StatelessWidget {
       children: [
         TableRow(
           children: [
-            _mapa(Colors.blue, Icons.map, 'Mapa', context),
+            _mapa(Colors.blue, Icons.pin_drop_sharp, 'Mapa', context),
             _grafica(Colors.purpleAccent, Icons.insert_chart_outlined, 'Gráfica', context),
           ]
         ),
@@ -109,7 +115,7 @@ class MainMenuPage extends StatelessWidget {
         ),
         TableRow(
           children: [
-            _acerca(Colors.blueAccent, Icons.insert_drive_file, 'Acerca', context),
+            _acerca(Colors.yellow[600], Icons.insert_drive_file, 'Acerca', context),
             _logOut(Colors.greenAccent, Icons.logout, 'Salir', context),
           ]
         )
@@ -124,7 +130,7 @@ class MainMenuPage extends StatelessWidget {
       onTap: (){
         final route = MaterialPageRoute(
           builder: (context){
-            return MapSample();
+            return MapPage();
           }
         );
         Navigator.push(context, route);

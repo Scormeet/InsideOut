@@ -22,7 +22,7 @@ class ScrollPage extends StatelessWidget {
 
   Widget _pagina1(){
     return Stack(
-      children: <Widget>[
+      children: <Widget>[ 
         _colorFondo(),
         _imagenFondo(),
         _textos(),
@@ -69,7 +69,7 @@ class ScrollPage extends StatelessWidget {
             ),
             Expanded(child: Container(),),
             Text(
-              'Deslize Hacia Arriba', 
+              'Deslice Hacia Arriba', 
               textAlign: TextAlign.center,
               style:TextStyle(
                 color: Colors.white,
