@@ -55,7 +55,7 @@ class FireMapState extends State<FireMap> {
           child: FlatButton(
             child: Icon(Icons.pin_drop, color: Colors.white,),
             color: Colors.green,
-            onPressed: _addGeoPoint
+            onPressed: _alert,
           ),
         ),
       ],
@@ -104,5 +104,40 @@ class FireMapState extends State<FireMap> {
       'position' : point.data,
       'nombre': user.displayName,
     });
+  }
+
+  void _alert()
+  {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context){
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          title: Text('Desea Añadir Marker'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text('¿Esta Seguro de que desea Marcar su posición actual?'),
+            ],
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Cancelar',style: TextStyle(color: Colors.red),),
+              onPressed: ()=>Navigator.of(context).pop(),
+            ),
+            FlatButton(
+              child: Text('Aceptar',style: TextStyle(color: Colors.lightBlue),),
+              onPressed: (){
+                _addGeoPoint();
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      }
+    );
   }
 }
