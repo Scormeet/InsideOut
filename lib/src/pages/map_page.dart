@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
@@ -29,6 +30,9 @@ class FireMapState extends State<FireMap> {
   GoogleMapController mapController;
   Location location = new Location();
   List<Marker> myMarker = [];
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  Geoflutterfire geo = Geoflutterfire();
+
 
   @override
   build(context) {
@@ -51,7 +55,7 @@ class FireMapState extends State<FireMap> {
           child: FlatButton(
             child: Icon(Icons.pin_drop, color: Colors.white,),
             color: Colors.green,
-            onPressed: _addMarker,
+            onPressed: _addGeoPoint
           ),
         ),
       ],
@@ -67,6 +71,9 @@ class FireMapState extends State<FireMap> {
         Marker( 
           markerId: MarkerId(pos.toString()),
           position: LatLng(pos.latitude, pos.longitude),
+          infoWindow: InfoWindow(
+            title: 'Mi Posición Actual',
+          ),
         )
       );
     });
@@ -85,5 +92,17 @@ class FireMapState extends State<FireMap> {
         zoom: 17.0
       )
     ));
+  }
+
+  final user = FirebaseAuth.instance.currentUser;
+
+  Future <DocumentReference>_addGeoPoint() async {
+    var pos = await location.getLocation();
+    _addMarker();
+    GeoFirePoint point = geo.point(latitude: pos.latitude, longitude: pos.longitude);
+    return firestore.collection('locations').add({
+      'position' : point.data,
+      'nombre': user.displayName,
+    });
   }
 }
