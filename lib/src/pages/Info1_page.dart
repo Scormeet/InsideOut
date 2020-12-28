@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:inside_out/src/constant.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class Info1Page extends StatelessWidget {
   @override
@@ -98,7 +100,7 @@ class Info1Page extends StatelessWidget {
                               style: kTitleTextstyle,
                             ),
                             TextSpan(
-                              text: 'Última Actualización 24 de Diciembre\n',
+                              text: 'Última Actualización 28 de Diciembre\n',
                               style: TextStyle(
                                 color: kTextLightColor
                               ),
@@ -107,11 +109,14 @@ class Info1Page extends StatelessWidget {
                         )
                       ),
                       Spacer(),
-                      Text(
-                        'Ver Detalles', 
-                        style: TextStyle(
-                          color: kPrimaryColor,
-                          fontWeight: FontWeight.w600,
+                      InkWell(
+                        onTap: _launchURL1,
+                        child: Text(
+                          'Ver Detalles', 
+                          style: TextStyle(
+                            color: kPrimaryColor,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       )
                     ],
@@ -135,17 +140,17 @@ class Info1Page extends StatelessWidget {
                       children: <Widget>[
                         Counter(
                           color: kInfectedColor,
-                          number: 1046,
+                          number: 1435,
                           title: 'Infectados'
                         ),
                         Counter(
                           color: kDeathColor,
-                          number: 87,
+                          number: 122,
                           title: 'Muertes'
                         ),
                         Counter(
                           color: kRecovercolor,
-                          number: 46,
+                          number: 746,
                           title: 'Recuperados'
                         )
                       ],
@@ -160,11 +165,14 @@ class Info1Page extends StatelessWidget {
                         style: kTitleTextstyle,
 
                       ),
-                      Text(
-                        "Ver Detalles",
-                        style: TextStyle(
-                          color: kPrimaryColor,
-                          fontWeight: FontWeight.w600,
+                      InkWell(
+                        onTap: _launchURL2,
+                        child: Text(
+                          "Ver Detalles",
+                          style: TextStyle(
+                            color: kPrimaryColor,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ],
@@ -197,6 +205,23 @@ class Info1Page extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+_launchURL1() async {
+  const url = 'https://www.google.com.mx/search?q=coronavirus+casos+cdmx&ie=UTF-8&oe=';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+_launchURL2() async {
+  const url = 'https://www.nytimes.com/es/interactive/2020/espanol/america-latina/coronavirus-en-mexico.html';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
   }
 }
 
@@ -261,5 +286,7 @@ class MyClipper extends CustomClipper<Path>{
     bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
     return false;
   }
+
+  
   
 }

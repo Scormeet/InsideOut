@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:inside_out/src/constant.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Info2Page extends StatelessWidget {
   @override
@@ -72,38 +73,47 @@ class Info2Page extends StatelessWidget {
                     style: kTitleTextstyle,
                   ),
                   SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      SymptomCard(
-                        image: "assets/images/headache.png",
-                        title: "Dolor de Cabeza",
-                        isActive: true,
-                      ),
-                      SymptomCard(
-                        image: "assets/images/caugh.png",
-                        title: "Toz Seca",
-                      ),
-                      SymptomCard(
-                        image: "assets/images/fever.png",
-                        title: "Fiebre",
-                      ),
-                    ],
+                  InkWell(
+                    onTap: _launchURL3,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        SymptomCard(
+                          image: "assets/images/headache.png",
+                          title: "Dolor de Cabeza",
+                          isActive: true,
+                        ),
+                        SymptomCard(
+                          image: "assets/images/caugh.png",
+                          title: "Toz Seca",
+                        ),
+                        SymptomCard(
+                          image: "assets/images/fever.png",
+                          title: "Fiebre",
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(height: 20),
                   Text("Medidas de Prevención", style: kTitleTextstyle),
                   SizedBox(height: 20),
-                  PreventCard(
-                    text:
-                        "Desde el comienzo de la propagación del Coronavirus, en todos los lugares que visites tendrás que usar cubrebocas",
-                    image: "assets/images/wear_mask.png",
-                    title: "Usa Cubrebocas",
+                  InkWell(
+                    onTap: _launchURL1,
+                    child: PreventCard(
+                      text:
+                          "Desde el comienzo de la propagación del Coronavirus, en todos los lugares que visites tendrás que usar cubrebocas",
+                      image: "assets/images/wear_mask.png",
+                      title: "Usa Cubrebocas",
+                    ),
                   ),
-                  PreventCard(
-                    text:
-                        "Lavar tus manos constantemente previene en un 90% de contagio por COVID-19",
-                    image: "assets/images/wash_hands.png",
-                    title: "Lava tus Manos",
+                  InkWell(
+                    onTap: _launchURL2,
+                    child: PreventCard(
+                      text:
+                          "Lavar tus manos constantemente previene en un 90% de contagio por COVID-19",
+                      image: "assets/images/wash_hands.png",
+                      title: "Lava tus Manos",
+                    ),
                   ),
                   SizedBox(height: 50),
                 ],
@@ -113,6 +123,32 @@ class Info2Page extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+_launchURL1() async {
+  const url = 'https://www.who.int/es/emergencies/diseases/novel-coronavirus-2019/advice-for-public/when-and-how-to-use-masks';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+_launchURL2() async {
+  const url = 'http://www.imss.gob.mx/prensa/archivo/202010/697';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
+_launchURL3() async {
+  const url = 'https://www.google.com.mx/search?q=sintomas+covid&ie=UTF-8&oe=#wptab=s:H4sIAAAAAAAAAONgVuLVT9c3NMwySk6OL8zJecTozS3w8sc9YSmnSWtOXmO04eIKzsgvd80rySypFNLjYoOyVLgEpVB1ajBI8XOhCvHsYuLzSE3MKckIrswtKMnPLV7EylecmQdkJRYrJOeXZaYAAOV-JYaBAAAA';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
   }
 }
 
