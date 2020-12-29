@@ -324,9 +324,7 @@ class MainMenuPage extends StatelessWidget {
     
     return InkWell(
       onTap: (){
-        final provider =
-                Provider.of<GoogleSignInProvider>(context, listen:false);
-              provider.logout();
+        _alert(context);
       },
       child: ClipRect(
         child: BackdropFilter(
@@ -357,7 +355,42 @@ class MainMenuPage extends StatelessWidget {
     );
   }
 
-
+  void _alert(BuildContext contextj)
+  {
+    showDialog(
+      context: contextj,
+      barrierDismissible: true,
+      builder: (context){
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          title: Text('Cerrar Sesión'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text('¿Esta Seguro de que desea Salir?'),
+            ],
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Cancelar',style: TextStyle(color: Colors.red),),
+              onPressed: ()=>Navigator.of(context).pop(),
+            ),
+            FlatButton(
+              child: Text('Aceptar',style: TextStyle(color: Colors.lightBlue),),
+              onPressed: (){
+                final provider =
+                Provider.of<GoogleSignInProvider>(contextj, listen:false);
+              provider.logout();
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      }
+    );
+  }
 }
 
 
