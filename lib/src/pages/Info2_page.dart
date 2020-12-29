@@ -101,7 +101,7 @@ class Info2Page extends StatelessWidget {
                     onTap: _launchURL1,
                     child: PreventCard(
                       text:
-                          "Desde el comienzo de la propagación del Coronavirus, en todos los lugares que visites tendrás que usar cubrebocas",
+                          "Desde el comienzo de la propagación, en todos los lugares usarás cubrebocas",
                       image: "assets/images/wear_mask.png",
                       title: "Usa Cubrebocas",
                     ),

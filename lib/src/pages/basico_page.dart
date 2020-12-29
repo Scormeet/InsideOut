@@ -119,7 +119,7 @@ class BasicoPage extends StatelessWidget {
           '* Mantener un registro general por delegaciones y municipios para aplicar medidas con base a el caso.\n\n'
           '* Acelerar el proceso del semáforo epidemiológico que se encuentra regulando actualmente.\n\n\n'
 
-          'Hecho por:\n\n' 
+          'Realizado por:\n\n' 
           '- Sergio Benítez Ramírez\n\n' 
           '- José Luis Bonilla Reyes\n\n'
           '- Juan Daniel Cedillo Hernández\n\n'
