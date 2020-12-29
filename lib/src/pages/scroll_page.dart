@@ -83,7 +83,8 @@ class ScrollPage extends StatelessWidget {
 
   Widget _pagina2(BuildContext context){
     return Scaffold(
-      backgroundColor: Color.fromRGBO(80, 194, 221, 1.0),
+      //backgroundColor: Color.fromRGBO(80, 194, 221, 1.0),
+      backgroundColor: Colors.white,
       body: ChangeNotifierProvider(
         create: (context) => GoogleSignInProvider(),
         child: StreamBuilder(

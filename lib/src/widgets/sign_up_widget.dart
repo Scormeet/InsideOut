@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:inside_out/src/widgets/background_painter.dart';
 import 'google_signup_button_widget.dart';
 class SignUpWidget extends StatelessWidget{
   @override
-  Widget build(BuildContext context) => buildSignUp();
+  Widget build(BuildContext context) => Stack(
+    fit: StackFit.expand,
+      children: [
+        CustomPaint(painter: BackgroundPainter()),
+        buildSignUp(),
+      ],
+    );
 
   Widget buildSignUp() => Column(
         children: [
