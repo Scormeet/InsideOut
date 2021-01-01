@@ -32,6 +32,9 @@ class FireMapState extends State<FireMap> {
   List<Marker> myMarker = [];
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   Geoflutterfire geo = Geoflutterfire();
+  BehaviorSubject<double> radius = BehaviorSubject<double>.seeded(100.0);
+  Stream<dynamic> query;
+  StreamSubscription subscription;
 
 
   @override
@@ -54,8 +57,22 @@ class FireMapState extends State<FireMap> {
           right: 260,
           child: FlatButton(
             child: Icon(Icons.pin_drop, color: Colors.white,),
-            color: Colors.green,
+            color: Colors.lightBlue,
             onPressed: _alert,
+          ),
+        ),
+        Positioned(
+          bottom: 20,
+          left: 110,
+          child: Slider(
+            min: 100.0,
+            max: 500.0,
+            divisions: 4,
+            value: radius.value,
+            label: 'Radio ${radius.value} km',
+            activeColor: Colors.lightBlue,
+            inactiveColor: Colors.lightBlue.withOpacity(0.2),
+            onChanged: _updateQuery,
           ),
         ),
       ],
@@ -63,7 +80,7 @@ class FireMapState extends State<FireMap> {
  // widgets go here
   }
 
-  _addMarker() async {
+  /*_addMarker() async {
     var pos = await location.getLocation();
     setState(() {
       //myMarker = [];
@@ -77,8 +94,10 @@ class FireMapState extends State<FireMap> {
         )
       );
     });
-  }
+  }*/
+
   _onMapCreated(GoogleMapController controller){
+    _startQuery();
     setState((){
       mapController = controller;
     });
@@ -98,7 +117,7 @@ class FireMapState extends State<FireMap> {
 
   Future <DocumentReference>_addGeoPoint() async {
     var pos = await location.getLocation();
-    _addMarker();
+    //_addMarker();
     GeoFirePoint point = geo.point(latitude: pos.latitude, longitude: pos.longitude);
     return firestore.collection('locations').add({
       'position' : point.data,
@@ -140,4 +159,66 @@ class FireMapState extends State<FireMap> {
       }
     );
   }
+
+  void _updateMarkers(List<DocumentSnapshot> documentList) {
+    //print(documentList);
+    documentList.forEach((DocumentSnapshot document) {
+        GeoPoint pos = document.data()['position'];
+        var marker = Marker(
+          markerId: MarkerId(pos.toString()),
+          position: LatLng(pos.latitude, pos.longitude),
+          icon: BitmapDescriptor.defaultMarker,
+          infoWindow: InfoWindow(
+            title: 'Mi Posición Actual',
+          ),
+        );
+        myMarker = [];
+        setState(() { 
+          myMarker.add(marker);
+        });
+    });
+  }
+
+  _startQuery() async {
+    var pos = await location.getLocation();
+    double lat = pos.latitude;
+    double lng = pos.longitude;
+
+    var ref = firestore.collection('locations');
+    GeoFirePoint center = geo.point(latitude: lat, longitude: lng);
+
+    subscription = radius.switchMap((rad){
+      return geo.collection(collectionRef: ref).within(
+        center: center, 
+        radius: rad, 
+        field: 'position', 
+        strictMode: true
+      );
+    }).listen(_updateMarkers);
+  }
+
+
+
+  _updateQuery(value){
+    final zoomMap = {
+      100.0: 12.0,
+      200.0: 10.0,
+      300.0: 7.0,
+      400.0: 6.0,
+      500.0: 5.0
+    };
+    final zoom = zoomMap[value];
+    mapController.moveCamera(CameraUpdate.zoomTo(zoom));
+
+    setState((){
+      radius.add(value);
+    });
+  }
+
+  @override
+  dispose() {
+    subscription.cancel();
+    super.dispose();
+  }
+
 }
