@@ -28,8 +28,8 @@ class _CountryState extends State<Country> {
 
     countryList = covidService.getCountryList();
 
-    this._typeAheadController.text = "United States of America";
-    summaryList = covidService.getCountrySummary("united-states");
+    this._typeAheadController.text = "Mexico";
+    summaryList = covidService.getCountrySummary("mexico");
   }
 
   List<String> _getSuggestions(List<CountryModel> list, String query) {
@@ -58,7 +58,7 @@ class _CountryState extends State<Country> {
             );
           default:
             return !snapshot.hasData 
-              ? Center(child: Text("Empty"),)
+              ? Center(child: Text("Vacío"),)
               : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +67,7 @@ class _CountryState extends State<Country> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 4, vertical: 6),
                     child: Text(
-                      "Type the country name",
+                      "Ingrese el nombre de un País",
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -80,7 +80,7 @@ class _CountryState extends State<Country> {
                     textFieldConfiguration: TextFieldConfiguration(
                       controller: this._typeAheadController,
                       decoration: InputDecoration(
-                        hintText: 'Type here country name',
+                        hintText: 'Ingrese aquí el nombre',
                         hintStyle: TextStyle(fontSize: 16),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
@@ -138,7 +138,7 @@ class _CountryState extends State<Country> {
                           );
                         default:
                           return !snapshot.hasData 
-                            ? Center(child: Text("Empty"),)
+                            ? Center(child: Text("Vacío"),)
                             : CountryStatistics(
                               summaryList: snapshot.data,
                             );

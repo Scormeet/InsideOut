@@ -20,19 +20,19 @@ class CountryStatistics extends StatelessWidget {
       children: <Widget>[
 
         buildCard(
-          "CONFIRMED",
+          "Confirmados",
           summaryList[summaryList.length - 1].confirmed,
           kConfirmedColor,
-          "ACTIVE",
+          "Activos",
           summaryList[summaryList.length - 1].active,
           kActiveColor,
         ),
 
         buildCard(
-          "RECOVERED",
+          "Recuperados",
           summaryList[summaryList.length - 1].recovered,
           kRecoveredColor,
-          "DEATH",
+          "Muertes",
           summaryList[summaryList.length - 1].death,
           kDeathColor,
         ),
@@ -84,7 +84,7 @@ class CountryStatistics extends StatelessWidget {
                   style: TextStyle(
                     color: leftColor,
                     fontWeight: FontWeight.bold,
-                    fontSize: 28,
+                    fontSize: 22,
                   ),
                 ),
               ],
@@ -121,7 +121,7 @@ class CountryStatistics extends StatelessWidget {
                   style: TextStyle(
                     color: rightColor,
                     fontWeight: FontWeight.bold,
-                    fontSize: 28,
+                    fontSize: 22,
                   ),
                 ),
               ],
@@ -163,28 +163,28 @@ class CountryStatistics extends StatelessWidget {
 
     return [      
       new charts.Series<TimeSeriesCases, DateTime>(
-        id: 'Confirmed',
+        id: 'Confirmados',
         colorFn: (_, __) => charts.ColorUtil.fromDartColor(kConfirmedColor),
         domainFn: (TimeSeriesCases cases, _) => cases.time,
         measureFn: (TimeSeriesCases cases, _) => cases.cases,
         data: confirmedData,
       ),
       new charts.Series<TimeSeriesCases, DateTime>(
-        id: 'Active',
+        id: 'Activos',
         colorFn: (_, __) => charts.ColorUtil.fromDartColor(kActiveColor),
         domainFn: (TimeSeriesCases cases, _) => cases.time,
         measureFn: (TimeSeriesCases cases, _) => cases.cases,
         data: activeData,
       ),
       new charts.Series<TimeSeriesCases, DateTime>(
-        id: 'Recovered',
+        id: 'Recuperados',
         colorFn: (_, __) => charts.ColorUtil.fromDartColor(kRecoveredColor),
         domainFn: (TimeSeriesCases cases, _) => cases.time,
         measureFn: (TimeSeriesCases cases, _) => cases.cases,
         data: recoveredData,
       ),
       new charts.Series<TimeSeriesCases, DateTime>(
-        id: 'Death',
+        id: 'Muertes',
         colorFn: (_, __) => charts.ColorUtil.fromDartColor(kDeathColor),
         domainFn: (TimeSeriesCases cases, _) => cases.time,
         measureFn: (TimeSeriesCases cases, _) => cases.cases,

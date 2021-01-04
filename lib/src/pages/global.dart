@@ -37,7 +37,7 @@ class _GlobalState extends State<Global> {
             children: <Widget>[
 
               Text(
-                "Global Corona Virus Cases",
+                "Casos Globales de Coronavirus",
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,

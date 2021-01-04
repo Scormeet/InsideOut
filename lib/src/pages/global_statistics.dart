@@ -17,28 +17,28 @@ class GlobalStatistics extends StatelessWidget {
       children: <Widget>[
 
         buildCard(
-          "CONFIRMED", 
+          "Confirmados", 
           summary.totalConfirmed,
           summary.newConfirmed,
           kConfirmedColor
         ),
 
         buildCard(
-          "ACTIVE", 
+          "Activos", 
           summary.totalConfirmed - summary.totalRecovered - summary.totalDeaths,
           summary.newConfirmed - summary.newRecovered - summary.newDeaths,
           kActiveColor
         ),
 
         buildCard(
-          "RECOVERED", 
+          "Recuperados", 
           summary.totalRecovered,
           summary.newRecovered,
           kRecoveredColor
         ),
 
         buildCard(
-          "DEATH", 
+          "Muertes", 
           summary.totalDeaths,
           summary.newDeaths,
           kDeathColor
@@ -47,7 +47,7 @@ class GlobalStatistics extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 4, vertical: 6),
           child: Text(
-            "Statistics updated " + timeago.format(summary.date),
+            "Datos actualizados cada día.", //+ timeago.format(summary.date),
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -91,7 +91,7 @@ class GlobalStatistics extends StatelessWidget {
                   children: <Widget>[
 
                     Text(
-                      "Total",
+                      "Totales",
                       style: TextStyle(
                         color: color,
                         fontWeight: FontWeight.bold,
@@ -104,7 +104,7 @@ class GlobalStatistics extends StatelessWidget {
                       style: TextStyle(
                         color: color,
                         fontWeight: FontWeight.bold,
-                        fontSize: 28,
+                        fontSize: 22,
                       ),
                     ),
 
@@ -116,7 +116,7 @@ class GlobalStatistics extends StatelessWidget {
                   children: <Widget>[
 
                     Text(
-                      "Today",
+                      "Hoy",
                       style: TextStyle(
                         color: color,
                         fontWeight: FontWeight.bold,
@@ -129,7 +129,7 @@ class GlobalStatistics extends StatelessWidget {
                       style: TextStyle(
                         color: color,
                         fontWeight: FontWeight.bold,
-                        fontSize: 28,
+                        fontSize: 22,
                       ),
                     ),
 

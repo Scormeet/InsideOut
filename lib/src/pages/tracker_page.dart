@@ -29,7 +29,7 @@ class _TrackerState extends State<Tracker> {
         backgroundColor: kPrimaryColor,
         elevation: 0,
         title: Text(
-          "COVID-19 Tracker Live Data",
+          "COVID-19 Tiempo Real",
         ),
         centerTitle: true,
       ),
@@ -72,7 +72,7 @@ class _TrackerState extends State<Tracker> {
                 ),
 
                 NavigationOption(
-                  title: "Country",
+                  title: "País",
                   selected: navigationStatus == NavigationStatus.COUNTRY,
                   onSelected: () {
                     setState(() {
