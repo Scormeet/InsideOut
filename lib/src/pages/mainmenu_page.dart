@@ -5,6 +5,7 @@ import 'package:inside_out/src/pages/Info1_page.dart';
 import 'package:inside_out/src/pages/Info2_page.dart';
 import 'package:inside_out/src/pages/basico_page.dart';
 import 'package:inside_out/src/pages/map_page.dart';
+import 'package:inside_out/src/pages/tracker_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:inside_out/src/providers/google_sign_in.dart';
@@ -169,7 +170,7 @@ class MainMenuPage extends StatelessWidget {
       onTap: (){
         final route = MaterialPageRoute(
           builder: (context){
-            return Info1Page();
+            return Tracker();
           }
         );
         Navigator.push(context, route);

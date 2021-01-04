@@ -6,6 +6,7 @@ import 'package:inside_out/src/pages/Info2_page.dart';
 import 'package:inside_out/src/pages/scroll_page.dart';
 import 'package:inside_out/src/pages/basico_page.dart';
 import 'package:inside_out/src/pages/map_page.dart';
+import 'package:inside_out/src/pages/tracker_page.dart';
 import 'package:inside_out/src/pages/mainmenu_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         'info1'   : (BuildContext context) => Info1Page(),
         'info2'   : (BuildContext context) => Info2Page(),
         'map'     : (BuildContext context) => MapPage(),
+        'tracker'     : (BuildContext context) => Tracker(),
       }
     );
   }
