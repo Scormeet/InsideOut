@@ -105,13 +105,13 @@ class MainMenuPage extends StatelessWidget {
         TableRow(
           children: [
             _mapa(Colors.blue, Icons.pin_drop_sharp, 'Mapa', context),
-            _grafica(Colors.purpleAccent, Icons.insert_chart_outlined, 'Gráfica', context),
+            _grafica(Colors.purpleAccent, Icons.insert_chart_outlined, 'Estadísticas', context),
           ]
         ),
         TableRow(
           children: [
-            _casos(Colors.pinkAccent, Icons.coronavirus_outlined, 'Casos', context),
-            _quehacer(Colors.orange, Icons.medical_services, 'Que Hacer', context),
+            _casos(Colors.pinkAccent, Icons.coronavirus_outlined, 'Contacto', context),
+            _quehacer(Colors.orange, Icons.medical_services, 'Prevención', context),
           ]
         ),
         TableRow(

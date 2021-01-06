@@ -97,11 +97,11 @@ class Info1Page extends StatelessWidget {
                           text: TextSpan(
                             children:[
                               TextSpan(
-                                text: 'Datos Actuales\n',
+                                text: 'Números Telefónicos\n',
                                 style: kTitleTextstyle,
                               ),
                               TextSpan(
-                                text: 'Última Actualización 28 de Diciembre\n',
+                                text: 'Contacto de Emergencia\n',
                                 style: TextStyle(
                                   color: kTextLightColor
                                 ),
@@ -113,7 +113,7 @@ class Info1Page extends StatelessWidget {
                         InkWell(
                           onTap: _launchURL1,
                           child: Text(
-                            'Ver Detalles', 
+                            'Ver todos', 
                             style: TextStyle(
                               color: kPrimaryColor,
                               fontWeight: FontWeight.w600,
@@ -143,20 +143,20 @@ class Info1Page extends StatelessWidget {
                           children: <Widget>[
                             Counter(
                               color: kInfectedColor,
-                              number: 1390000,
-                              title: 'Infectados'
+                              number: 8000044800,
+                              title: 'Número de atención ciudadana del Sector Salud'
                             ),
                             SizedBox(height: 20,),
                             Counter(
                               color: kDeathColor,
-                              number: 123000,
-                              title: 'Muertes'
+                              number: 8006283762,
+                              title: 'Atención a mujeres en embarazo, parto, puerperio o lactancia'
                             ),
                              SizedBox(height: 20,),
                             Counter(
                               color: kRecovercolor,
-                              number: 1050000,
-                              title: 'Recuperados'
+                              number: 5540001000,
+                              title: 'ISSTE Telefóno'
                             )
                           ],
                         ),
@@ -174,7 +174,7 @@ class Info1Page extends StatelessWidget {
                         InkWell(
                           onTap: _launchURL2,
                           child: Text(
-                            "Ver Detalles",
+                            "Ver Mapa",
                             style: TextStyle(
                               color: kPrimaryColor,
                               fontWeight: FontWeight.w600,
@@ -217,7 +217,7 @@ class Info1Page extends StatelessWidget {
 }
 
 _launchURL1() async {
-  const url = 'https://www.google.com.mx/search?q=coronavirus+casos+cdmx&ie=UTF-8&oe=';
+  const url = 'https://coronavirus.gob.mx/contacto/';
   if (await canLaunch(url)) {
     await launch(url);
   } else {
