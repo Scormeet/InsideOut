@@ -135,7 +135,7 @@ _launchURL1() async {
   }
 }
 _launchURL2() async {
-  const url = 'http://www.imss.gob.mx/prensa/archivo/202010/697';
+  const url = 'https://www.who.int/csr/resources/publications/swineflu/gpsc_5may_How_To_HandWash_Poster_es.pdf';
   if (await canLaunch(url)) {
     await launch(url);
   } else {
@@ -144,7 +144,7 @@ _launchURL2() async {
 }
 
 _launchURL3() async {
-  const url = 'https://www.google.com.mx/search?q=sintomas+covid&ie=UTF-8&oe=#wptab=s:H4sIAAAAAAAAAONgVuLVT9c3NMwySk6OL8zJecTozS3w8sc9YSmnSWtOXmO04eIKzsgvd80rySypFNLjYoOyVLgEpVB1ajBI8XOhCvHsYuLzSE3MKckIrswtKMnPLV7EylecmQdkJRYrJOeXZaYAAOV-JYaBAAAA';
+  const url = 'https://www.who.int/es/emergencies/diseases/novel-coronavirus-2019/advice-for-public/q-a-coronaviruses?gclid=EAIaIQobChMIq_3Lr52h7gIVkNXACh0QpQ8DEAAYASAAEgIIXfD_BwE';
   if (await canLaunch(url)) {
     await launch(url);
   } else {
