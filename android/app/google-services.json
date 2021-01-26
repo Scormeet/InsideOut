@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:575979404436:android:16a8b3631ba1b08fa24881",
         "android_client_info": {
-          "package_name": "com.example.inside_out"
+          "package_name": "com.mx.ipn.insideout"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "575979404436-mq214eonpnaab8h4decbjid98vt7i07c.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.inside_out",
+            "package_name": "com.mx.ipn.insideout",
             "certificate_hash": "9ac1b61b27cfc03b5dfde530e2d8286796168804"
           }
         },

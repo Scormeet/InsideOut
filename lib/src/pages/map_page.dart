@@ -64,6 +64,17 @@ class FireMapState extends State<FireMap> {
     super.initState();
   }
 
+  _handleTap(LatLng tappedPoint){
+    setState(() {
+      myMarker.add(
+        Marker(
+          markerId: MarkerId(tappedPoint.toString()),
+          position: tappedPoint,
+        )
+      );
+    });
+  }
+
 
   @override
   build(context) {
@@ -78,7 +89,8 @@ class FireMapState extends State<FireMap> {
           myLocationEnabled: true,
           mapType: MapType.normal,
           compassEnabled: true,
-          markers: Set.from(myMarker)//Set<Marker>.of(markers.values)
+          markers: Set.from(myMarker),//Set<Marker>.of(markers.values)
+          onTap: _handleTap,
         ),
         Positioned(
           bottom: 30,
